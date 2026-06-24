@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farhan Trader VIP</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#050505;
+color:white;
+}
+
+.vipHeader{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+padding:18px;
+color:#00fff0;
+background:#050505;
+text-shadow:0 0 10px #00fff0,0 0 25px #00fff0;
+letter-spacing:2px;
+border-bottom:2px solid #00fff0;
+}
+
+.container{
+max-width:420px;
+margin:auto;
+padding:15px;
+}
+
+.card{
+background:linear-gradient(145deg,#0a0a0a,#111);
+border-radius:15px;
+padding:15px;
+margin-top:15px;
+box-shadow:0 0 10px rgba(0,255,204,0.15);
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+background:#000;
+color:#00ffcc;
+text-align:center;
+margin-top:10px;
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:10px;
+margin-top:12px;
+font-weight:bold;
+background:linear-gradient(90deg,#00ffcc,#00b3ff);
+color:#000;
+box-shadow:0 0 15px #00ffcc;
+transition:0.2s;
+}
+
+button:active{
+transform:scale(0.97);
+box-shadow:0 0 25px #00ffcc;
+}
+
+#dashboard,#uidPage{
+display:none;
+}
+
+#timer{
+text-align:center;
+font-size:30px;
+margin-top:10px;
+color:#00ffcc;
+}
+
+#result{
+text-align:center;
+margin-top:20px;
+}
+
+.bigBox{
+display:inline-block;
+padding:15px 40px;
+font-size:40px;
+font-weight:bold;
+color:white;
+background:#ff0000;
+border-radius:15px;
+box-shadow:0 0 15px #ff0000,0 0 30px #ff0000;
+}
+
+.smallBox{
+display:inline-block;
+padding:15px 40px;
+font-size:40px;
+font-weight:bold;
+color:white;
+background:#00ff4c;
+border-radius:15px;
+box-shadow:0 0 15px #00ff4c,0 0 30px #00ff4c;
+}
+
+.history-item{
+padding:10px;
+background:#000;
+margin-top:8px;
+border-radius:10px;
+font-size:14px;
+}
+
+#winPopup{
+position:fixed;
+top:20px;
+right:-300px;
+background:#00ffcc;
+color:#000;
+padding:10px 15px;
+border-radius:10px;
+font-weight:bold;
+box-shadow:0 0 15px #00ffcc;
+transition:0.4s;
+z-index:9999;
+}
+
+#winPopup.show{
+right:10px;
+}
+
+#waBtn{
+position:fixed;
+width:60px;
+height:60px;
+top:20px;
+right:20px;
+z-index:99999;
+cursor:grab;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="vipHeader">FARHAN TRADER VIP</div>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="loginPage">
+
+<!-- UPDATED RED ALERT -->
+<div class="card" style="background:rgba(255,0,0,0.2);color:#ff4d4d;text-align:center;font-size:12px;font-weight:bold;border:1px solid #ff4d4d;box-shadow:0 0 10px red;">
+⚠️ اگر آپ نے اس لنک سے اکاؤنٹ نہیں بنایا تو یہ سسٹم کام نہیں کرے گا
+</div>
+
+<div class="card">
+<h3 style="color:gold;text-align:center;">GAME LINK</h3>
+<button onclick="window.open('https://pakclub.dev/register?inviteCode=HRKZBZW&from=app')">
+OPEN GAME
+</button>
+</div>
+
+<div class="card">
+<h3 style="text-align:center;">PASSWORD</h3>
+<input type="password" id="password" placeholder="Enter Password">
+<button onclick="checkPassword()">UNLOCK</button>
+</div>
+
+<div class="card">
+<h4 style="text-align:center;color:#00ffcc;">WHATSAPP CHANNEL</h4>
+<button onclick="window.open('https://whatsapp.com/channel/0029VbAydkC42DcYD0Axzr3Q')">
+JOIN CHANNEL
+</button>
+</div>
+
+</div>
+
+<!-- UID -->
+<div id="uidPage" class="container">
+<div class="card">
+<h3 style="text-align:center;">ENTER GAME UID</h3>
+<input type="number" id="uid" placeholder="Enter UID">
+<button onclick="checkUID()">CONTINUE</button>
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="container">
+
+<div class="card">
+<div id="result">WAITING...</div>
+<div id="timer">60</div>
+</div>
+
+<div class="card">
+<h3 style="text-align:center;">LAST 3 HISTORY</h3>
+<div id="history"></div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div id="winPopup">🎉 WIN CONFIRMED</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://whatsapp.com/channel/0029VbAydkC42DcYD0Axzr3Q" target="_blank">
+<img id="waBtn" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
+
+<script>
+
+function checkPassword(){
+if(password.value==="3001"){
+loginPage.style.display="none";
+uidPage.style.display="block";
+}else{
+alert("Wrong Password");
+}
+}
+
+function checkUID(){
+if(uid.value.length>=5 && uid.value.length<=6){
+uidPage.style.display="none";
+dashboard.style.display="block";
+startSystem();
+}else{
+alert("Invalid UID");
+}
+}
+
+let time=60;
+let history=[];
+
+function randomResult(){
+return Math.random()>0.5 ? "BIG" : "SMALL";
+}
+
+function showPopup(){
+let p=document.getElementById("winPopup");
+p.classList.add("show");
+setTimeout(()=>p.classList.remove("show"),1200);
+}
+
+function showResult(val){
+document.getElementById("result").innerHTML =
+val==="BIG"
+? `<div class="bigBox">BIG</div>`
+: `<div class="smallBox">SMALL</div>`;
+}
+
+function startSystem(){
+
+let currentResult = randomResult();
+showResult(currentResult);
+
+setInterval(()=>{
+
+time--;
+document.getElementById("timer").innerText=time;
+
+showResult(currentResult);
+
+if(time<=0){
+
+history.unshift(`WIN → ${currentResult}`);
+
+if(history.length>3) history.pop();
+
+document.getElementById("history").innerHTML=
+history.map(h=>`<div class="history-item">${h}</div>`).join("");
+
+showPopup();
+
+time=60;
+currentResult = randomResult();
+showResult(currentResult);
+}
+
+},1000);
+
+}
+
+makeDraggable(document.getElementById("waBtn"));
+
+function makeDraggable(el){
+
+let down=false;
+let offsetX=0;
+let offsetY=0;
+
+el.addEventListener("mousedown",start);
+el.addEventListener("touchstart",start);
+
+function start(e){
+down=true;
+
+let x=e.touches ? e.touches[0].clientX : e.clientX;
+let y=e.touches ? e.touches[0].clientY : e.clientY;
+
+offsetX=x-el.offsetLeft;
+offsetY=y-el.offsetTop;
+}
+
+document.addEventListener("mousemove",move);
+document.addEventListener("touchmove",move);
+
+function move(e){
+if(!down) return;
+
+let x=e.touches ? e.touches[0].clientX : e.clientX;
+let y=e.touches ? e.touches[0].clientY : e.clientY;
+
+el.style.left=(x-offsetX)+"px";
+el.style.top=(y-offsetY)+"px";
+el.style.right="auto";
+el.style.bottom="auto";
+}
+
+document.addEventListener("mouseup",()=>down=false);
+document.addEventListener("touchend",()=>down=false);
+
+}
+
+</script>
+
+</body>
+</html>
